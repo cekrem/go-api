@@ -1,28 +1,27 @@
 package controllers
 
 import (  
-  "net/http"
   "gopkg.in/gin-gonic/gin.v1"
 )
 
 type User struct {
-	Name		string	`json: "name"`
-	Password	string	`json: "password"`
+	User     string `form:"user" json:"user" binding:"required"`
+	Password string `form:"password" json:"password" binding:"required"`
 }
 
 func Index (c *gin.Context) {
-	c.String(http.StatusOK, "Hello world");
+	c.String(200, "Hello world");
 }
 
 func Name (c *gin.Context) {
 	name := c.Param("name")
-	c.String(http.StatusOK, "Hello " + name);
+	c.String(200, "Hello " + name);
 }
 
 func Json (c *gin.Context) {
 	var json User
-	if c.BindJSON(&json) == nil {
-		c.JSON(http.StatusOK, json)
+	if c.Bind(&json) == nil {
+		c.JSON(200, json)
 	} else {
 		c.String(500, "NOT OK!")
 	}
