@@ -1,12 +1,12 @@
 package main
 
 import (
+	"github.com/cekrem/go-api/controllers"
 	"gopkg.in/gin-gonic/gin.v1"
-	"gitlab/christianek/go-api/controllers"
 )
 
 func main() {
-	router := gin.Default();
+	router := gin.Default()
 	v1 := router.Group("api/v1")
 	{
 		v1.GET("/", controllers.Index)
@@ -14,5 +14,5 @@ func main() {
 		v1.POST("/json", controllers.Json)
 	}
 
-	router.Run(":3200");
+	router.Run(":3200")
 }
